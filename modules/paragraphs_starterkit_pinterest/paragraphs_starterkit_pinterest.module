@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Contains paragraphs_starterkit_image_text.module
+ */
+
+/**
+ * Implements hook_preprocess_paragraphs().
+ */
+function paragraphs_starterkit_pinterest_preprocess_paragraph(&$variables) {
+  if ($variables['paragraph']->getType() === 'pinterest') {
+    /* @var Drupal\paragraphs\Entity\Paragraph $paragraph */
+    $paragraph = $variables['paragraph'];
+
+    $pinit_url = $paragraph->field_link->getValue();
+    $pinit_url = $pinit_url[0]['uri'];
+
+    $variables['pinit_url'] = $pinit_url;  // TODO: place pinit URL in content for better twig rendering.
+    $variables['#attached']['library'][] = 'paragraphs_starterkit_pinterest/pinterest.pinit';
+  }
+}

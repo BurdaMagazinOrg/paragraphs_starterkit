@@ -1,0 +1,41 @@
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.middle
+    - field.field.paragraph.profile.field_key_facts
+    - field.field.paragraph.profile.field_media
+    - field.field.paragraph.profile.field_p_view_mode
+    - field.field.paragraph.profile.field_title
+    - paragraphs.paragraphs_type.profile
+  module:
+    - text
+id: paragraph.profile.middle
+targetEntityType: paragraph
+bundle: profile
+mode: middle
+content:
+  field_key_facts:
+    type: text_default
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_media:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: facts_m
+      link: false
+    third_party_settings: {  }
+  field_title:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  field_p_view_mode: true
+  uid: true

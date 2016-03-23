@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains paragraphs_starterkit_image_text.module
+ */
+
+/**
+ * Implements hook_preprocess_paragraphs().
+ *
+ * Attach css we need for paragraph types on nodes with image + text paragraphs.
+ */
+function paragraphs_starterkit_twitter_preprocess_paragraph(&$variables) {
+  if ($variables['paragraph']->getType() === 'twitter') {
+    /* @var Drupal\paragraphs\Entity\Paragraph $paragraph */
+    $paragraph = $variables['paragraph'];
+
+    try {
+      $tweet_url = $paragraph->field_link->getValue();
+      $tweet_url = $tweet_url[0]['uri'];
+
+      $client = \Drupal::httpClient();
+      $request = $client->request('GET', 'https://api.twitter.com/1/statuses/oembed.json?url=' . $tweet_url . '&omit_script=true&lang=de'); // TODO: dynamic language
+
+      if ($request->getStatusCode() === 200) {
+        $tweet_json = json_decode($request->getBody()->getContents());
+        $tweet = array(
+          '#markup' => (string) $tweet_json->html,
+        );
+        $variables['content']['tweet'] = render($tweet);
+        $variables['#attached']['library'][] = 'paragraphs_starterkit_twitter/twitter.widgets';
+      }
+    } catch(Exception $e) {}
+  }
+}

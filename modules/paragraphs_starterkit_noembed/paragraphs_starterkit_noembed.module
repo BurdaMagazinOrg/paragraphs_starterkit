@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Contains paragraphs_starterkit_image_text.module
+ */
+
+/**
+ * Implements hook_preprocess_paragraphs().
+ */
+function paragraphs_starterkit_noembed_preprocess_paragraph(&$variables) {
+  if ($variables['paragraph']->getType() === 'noembed') {
+    /* @var Drupal\paragraphs\Entity\Paragraph $paragraph */
+    $paragraph = $variables['paragraph'];
+
+    try {
+      $oembed_url = $paragraph->field_link->getValue();
+      $oembed_url = $oembed_url[0]['uri'];
+
+      $client = \Drupal::httpClient();
+      $request = $client->request('GET', 'https://noembed.com/embed?url=' . $oembed_url);
+
+      if ($request->getStatusCode() === 200) {
+        $json = json_decode($request->getBody()->getContents());
+        $output = array(
+          '#markup' => (string) $json->html,
+        );
+        $variables['content']['noembed'] = render($output);
+      }
+    } catch(Exception $e) {}
+  }
+}

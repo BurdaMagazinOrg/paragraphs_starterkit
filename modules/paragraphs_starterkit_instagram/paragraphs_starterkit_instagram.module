@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains paragraphs_starterkit_image_text.module
+ */
+
+/**
+ * Implements hook_preprocess_paragraphs().
+ *
+ * Attach css we need for paragraph types on nodes with image + text paragraphs.
+ */
+function paragraphs_starterkit_instagram_preprocess_paragraph(&$variables) {
+  if ($variables['paragraph']->getType() === 'instagram') {
+    /* @var Drupal\paragraphs\Entity\Paragraph $paragraph */
+    $paragraph = $variables['paragraph'];
+
+    try {
+      $instagram_url = $paragraph->field_link->getValue();
+      $instagram_url = $instagram_url[0]['uri'];
+
+      $client = \Drupal::httpClient();
+      $request = $client->request('GET', 'http://api.instagram.com/oembed?url=' . $instagram_url . '&omitscript=true');
+
+      if ($request->getStatusCode() === 200) {
+        $instagram_json = json_decode($request->getBody()->getContents());
+        $instagram = array(
+          '#markup' => (string) $instagram_json->html,
+        );
+        $variables['content']['instagram'] = render($instagram);
+        $variables['#attached']['library'][] = 'paragraphs_starterkit_instagram/instagram.embeds';
+      }
+    } catch(Exception $e) {}
+  }
+}

@@ -1,0 +1,4 @@
+status: true
+dependencies: {  }
+id: recent_content
+label: 'Recent Content'

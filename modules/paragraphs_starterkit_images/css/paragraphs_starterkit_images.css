@@ -1,0 +1,16 @@
+/**
+ * @file
+ * paragraph types styles.
+ */
+
+/**
+ * Flex row flow for images paragraph.
+ */
+.paragraph--type--images .field-items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.paragraph--type--images .field-item {
+  margin: 0 1em 1em 0;
+}

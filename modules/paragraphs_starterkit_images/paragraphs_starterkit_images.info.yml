@@ -1,0 +1,10 @@
+name: Paragraphs Type: Images
+description: Provide a simple 'Images' (multiple images) paragrahps type.
+package: Paragraphs Types
+type: module
+core: 8.x
+version: 1.0
+hidden: false
+dependencies:
+  - paragraphs_starterkit
+  - image

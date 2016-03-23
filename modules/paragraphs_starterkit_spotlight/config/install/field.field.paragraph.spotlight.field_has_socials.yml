@@ -1,0 +1,23 @@
+uuid: 9a9e0249-c27a-417c-9929-41d4a9077986
+langcode: de
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_has_socials
+    - paragraphs.paragraphs_type.spotlight
+id: paragraph.spotlight.field_has_socials
+field_name: field_has_socials
+entity_type: paragraph
+bundle: spotlight
+label: 'Has socials'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Ja
+  off_label: Nein
+field_type: boolean

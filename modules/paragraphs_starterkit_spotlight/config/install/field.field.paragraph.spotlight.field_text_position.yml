@@ -1,0 +1,21 @@
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text_position
+    - paragraphs.paragraphs_type.spotlight
+  module:
+    - options
+id: paragraph.spotlight.field_text_position
+field_name: field_text_position
+entity_type: paragraph
+bundle: spotlight
+label: 'Text Position'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: right
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Contains paragraphs_starterkit_text_image.module
+ */
+
+/**
+ * Implements hook_preprocess_node() for paragraph node templates.
+ *
+ * Attach css we need for paragraph types on nodes with text + image paragraphs.
+ */
+function paragraphs_starterkit_text_image_preprocess_paragraph(&$variables) {
+  if ($variables['paragraph']->getType() === 'text_image') {
+    $variables['#attached']['library'][] = 'paragraphs_starterkit_text_image/drupal.paragraphs_starterkit_text_image';
+  }
+}

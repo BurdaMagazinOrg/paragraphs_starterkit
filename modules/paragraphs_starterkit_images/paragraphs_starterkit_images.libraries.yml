@@ -1,0 +1,5 @@
+drupal.paragraphs_starterkit_images:
+  version: 1.0
+  css:
+    theme:
+      css/paragraphs_starterkit_images.css: {}

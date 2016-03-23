@@ -1,0 +1,24 @@
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_media
+    - media_entity.bundle.image
+    - paragraphs.paragraphs_type.spotlight
+id: paragraph.spotlight.field_media
+field_name: field_media
+entity_type: paragraph
+bundle: spotlight
+label: Media
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+field_type: entity_reference

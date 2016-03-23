@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.noembed.field_link
+    - paragraphs.paragraphs_type.noembed
+  module:
+    - link
+id: paragraph.noembed.default
+targetEntityType: paragraph
+bundle: noembed
+mode: default
+content:
+  field_link:
+    weight: 0
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+hidden:
+  created: true
+  uid: true

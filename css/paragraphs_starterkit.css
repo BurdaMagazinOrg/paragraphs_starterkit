@@ -1,0 +1,13 @@
+/**
+ * @file
+ * paragraph types styles.
+ */
+
+/**
+ * Float clearing, same as .clearfix.
+ */
+.paragraph:after {
+  content: "";
+  display: table;
+  clear: both;
+}

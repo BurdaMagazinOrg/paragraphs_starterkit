@@ -1,0 +1,29 @@
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.term_teaser.field_terms
+    - field.field.paragraph.term_teaser.field_title
+    - paragraphs.paragraphs_type.term_teaser
+id: paragraph.term_teaser.default
+targetEntityType: paragraph
+bundle: term_teaser
+mode: default
+content:
+  field_terms:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  uid: true

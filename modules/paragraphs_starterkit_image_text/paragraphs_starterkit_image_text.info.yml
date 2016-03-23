@@ -1,0 +1,13 @@
+name: Paragraphs Type: Image + Text
+description: Provide a simple 'Images + Text' paragrahps type.
+package: Paragraphs Types
+type: module
+core: 8.x
+version: 1.0
+hidden: false
+dependencies:
+  - paragraphs_starterkit
+  - paragraphs_starterkit_image
+  - paragraphs_starterkit_text
+  - image
+  - text

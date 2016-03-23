@@ -1,0 +1,19 @@
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_view_mode
+    - paragraphs.paragraphs_type.spotlight
+  module:
+    - options
+id: paragraph.spotlight.field_p_view_mode
+field_name: field_p_view_mode
+entity_type: paragraph
+bundle: spotlight
+label: Layout
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,5 @@
+drupal.ckeditor.plugins.infiniteprofile:
+  version: VERSION
+  css:
+    component:
+      css/plugins/infiniteprofile/plugin.css: {}

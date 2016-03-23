@@ -1,0 +1,8 @@
+pinterest.pinit:
+  remote: //assets.pinterest.com/js/pinit.js
+  version: 1.0.0
+  license:
+    name: MIT
+    gpl-compatible: true
+  js:
+    //assets.pinterest.com/js/pinit.js: { type: external, minified: true }

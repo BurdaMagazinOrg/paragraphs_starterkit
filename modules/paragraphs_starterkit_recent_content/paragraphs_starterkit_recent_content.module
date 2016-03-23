@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * @file
+ * Contains paragraphs_starterkit_image_text.module
+ */
+
+use Drupal\views\Views;
+
+/**
+ * Implements hook_preprocess_paragraphs().
+ *
+ * Attach css we need for paragraph types on nodes with image + text paragraphs.
+ */
+function paragraphs_starterkit_recent_content_preprocess_paragraph(&$variables) {
+  if ($variables['paragraph']->getType() === 'recent_content') {
+
+    $items = 3;
+    $paragraph = $variables['paragraph'];
+    if ($paragraph->hasField('field_item_count') && !$paragraph->field_item_count->isEmpty()) {
+      $items = $paragraph->field_item_count->value;
+    }
+    $embed_view = paragraphs_starterkit_recent_content_views_embed_view('paragraph_recent_content', 'default', $items);
+    $recent_content_view = \Drupal::service('renderer')->render($embed_view);
+    $variables['content']['recent_content_view'] = array(
+      '#markup' => $recent_content_view
+    );
+  }
+}
+
+/**
+ * Code based on D8 core function views_embed_view().
+ */
+function paragraphs_starterkit_recent_content_views_embed_view($name, $display_id = 'default', $items = 3) {
+  $args = func_get_args();
+  // Remove $name and $display_id from the arguments.
+  unset($args[0], $args[1], $args[2]);
+
+  $view = Views::getView($name);
+  if (!$view || !$view->access($display_id)) {
+    return;
+  }
+
+  // Set variable items per page.
+  $view->setItemsPerPage($items);
+
+  return $view->preview($display_id, $args);
+}

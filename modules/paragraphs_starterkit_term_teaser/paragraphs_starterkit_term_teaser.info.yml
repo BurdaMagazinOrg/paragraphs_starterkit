@@ -1,0 +1,11 @@
+name: Paragraphs Type: Term Teaser
+description: Provide a simple 'Term Teaser' paragrahps type.
+package: Paragraphs Types
+type: module
+core: 8.x
+version: 1.0
+hidden: false
+dependencies:
+  - paragraphs_starterkit
+  - taxonomy
+  - text

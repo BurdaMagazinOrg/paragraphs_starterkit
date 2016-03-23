@@ -1,0 +1,33 @@
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.recent_content.field_item_count
+    - field.field.paragraph.recent_content.field_p_view_mode
+    - field.field.paragraph.recent_content.field_title
+    - paragraphs.paragraphs_type.recent_content
+id: paragraph.recent_content.default
+targetEntityType: paragraph
+bundle: recent_content
+mode: default
+content:
+  field_item_count:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+  field_p_view_mode:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  uid: true

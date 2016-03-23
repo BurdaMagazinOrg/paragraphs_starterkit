@@ -1,0 +1,22 @@
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_key_facts
+    - paragraphs.paragraphs_type.profile
+  module:
+    - text
+id: paragraph.profile.field_key_facts
+field_name: field_key_facts
+entity_type: paragraph
+bundle: profile
+label: 'Wesentliche Informationen'
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: "<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n"
+    format: profile_html
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,21 @@
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_has_headline
+    - paragraphs.paragraphs_type.spotlight
+id: paragraph.spotlight.field_has_headline
+field_name: field_has_headline
+entity_type: paragraph
+bundle: spotlight
+label: 'Has H1 headline'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Ja
+  off_label: Nein
+field_type: boolean

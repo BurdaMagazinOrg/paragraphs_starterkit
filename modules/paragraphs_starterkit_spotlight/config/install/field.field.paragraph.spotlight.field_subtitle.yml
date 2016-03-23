@@ -1,0 +1,17 @@
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_subtitle
+    - paragraphs.paragraphs_type.spotlight
+id: paragraph.spotlight.field_subtitle
+field_name: field_subtitle
+entity_type: paragraph
+bundle: spotlight
+label: Subtitle
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

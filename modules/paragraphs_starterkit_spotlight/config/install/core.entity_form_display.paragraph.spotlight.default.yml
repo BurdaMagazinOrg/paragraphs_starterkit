@@ -1,0 +1,77 @@
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.spotlight.field_has_headline
+    - field.field.paragraph.spotlight.field_has_socials
+    - field.field.paragraph.spotlight.field_media
+    - field.field.paragraph.spotlight.field_p_view_mode
+    - field.field.paragraph.spotlight.field_subtitle
+    - field.field.paragraph.spotlight.field_text
+    - field.field.paragraph.spotlight.field_text_position
+    - field.field.paragraph.spotlight.field_title
+    - paragraphs.paragraphs_type.spotlight
+  module:
+    - inline_entity_form
+    - text
+id: paragraph.spotlight.default
+targetEntityType: paragraph
+bundle: spotlight
+mode: default
+content:
+  field_has_headline:
+    weight: 5
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+  field_has_socials:
+    weight: 6
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+  field_media:
+    weight: 4
+    settings:
+      label_singular: 'Spotlight Image'
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+  field_p_view_mode:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_subtitle:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_text:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+  field_text_position:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  uid: true

@@ -1,0 +1,11 @@
+name: Paragraphs Type: Content Teaser
+description: Provide a simple 'Content Teaser' paragrahps type.
+package: Paragraphs Types
+type: module
+core: 8.x
+version: 1.0
+hidden: false
+dependencies:
+  - paragraphs_starterkit
+  - node
+  - text
