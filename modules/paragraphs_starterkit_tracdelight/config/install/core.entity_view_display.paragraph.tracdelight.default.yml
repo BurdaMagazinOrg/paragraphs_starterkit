@@ -1,0 +1,31 @@
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.tracdelight.field_p_view_mode
+    - field.field.paragraph.tracdelight.field_product
+    - field.field.paragraph.tracdelight.field_title
+    - paragraphs.paragraphs_type.tracdelight
+id: paragraph.tracdelight.default
+targetEntityType: paragraph
+bundle: tracdelight
+mode: default
+content:
+  field_product:
+    type: entity_reference_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  created: true
+  field_p_view_mode: true
+  uid: true

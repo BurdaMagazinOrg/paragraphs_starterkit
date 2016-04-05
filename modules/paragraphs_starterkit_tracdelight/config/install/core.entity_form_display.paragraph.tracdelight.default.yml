@@ -1,0 +1,37 @@
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.tracdelight.field_p_view_mode
+    - field.field.paragraph.tracdelight.field_product
+    - field.field.paragraph.tracdelight.field_title
+    - paragraphs.paragraphs_type.tracdelight
+  module:
+    - tracdelight
+id: paragraph.tracdelight.default
+targetEntityType: paragraph
+bundle: tracdelight
+mode: default
+content:
+  field_p_view_mode:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_product:
+    type: tracdelight_widget
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: '60'
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden:
+  created: true
+  uid: true
