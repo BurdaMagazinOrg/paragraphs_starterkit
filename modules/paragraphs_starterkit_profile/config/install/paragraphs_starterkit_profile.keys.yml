@@ -1,0 +1,23 @@
+model:
+  - Name
+  - Geburtstag
+  - Geburtsort
+  - Sternzeichen
+  - Beruf
+  - Größe
+  - Maße
+  - Gewicht
+  - Augenfarbe
+  - Naturhaarfarbe
+designer:
+  - Gründungsjahr
+  - Firmensitz
+  - Gründer
+  - Chefdesigner
+celebrity:
+  - Name
+  - Geburtstag
+  - Geburtsort
+  - Sternzeichen
+  - Größe
+  - Beruf

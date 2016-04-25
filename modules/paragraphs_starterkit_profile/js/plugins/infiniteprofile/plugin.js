@@ -5,7 +5,7 @@
  * @ignore
  */
 
-(function ($, Drupal, CKEDITOR) {
+(function ($, Drupal, drupalSettings, CKEDITOR) {
 
   'use strict';
 
@@ -14,48 +14,40 @@
     init : function(editor) {
       editor.addCommand('infiniteprofilemodel', {
         exec: function (editor) {
-          editor.insertHtml('<table class="profile profile--model">' +
-            '<tbody>' +
-            '<tr><th class="profile__key">Name</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Geburtstag</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Geburtsort</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Sternzeichen</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Beruf</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Größe</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Maße</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Gewicht</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Augenfarbe</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Naturhaarfarbe</th><td class="profile__value"></td>' +
-            '</tr>' +
-            '</tbody></table>');
+          var keys = drupalSettings.paragraphs_starterkit_profile.modelKeys;
+          var rows = '';
+
+          for (var i = 0; i < keys.length; i++) {
+            rows += '<tr><th class="profile__key">' + keys[i] + '</th><td class="profile__value"></td></tr>';
+          }
+
+          editor.insertHtml('<table class="profile profile--model"><tbody>' + rows + '</tbody></table>');
           editor.editable().find('.profile__value').getItem(0).setStyle('width', '200px')
         }
       });
       editor.addCommand('infiniteprofiledesigner', {
         exec: function (editor) {
-          editor.insertHtml('<table class="profile profile--designer">' +
-            '<tbody>' +
-            '<tr><th class="profile__key">Gründungsjahr</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Firmensitz</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Gründer</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Chefdesigner</th><td class="profile__value"></td>' +
-            '</tr>' +
-            '</tbody></table>');
+          var keys = drupalSettings.paragraphs_starterkit_profile.designerKeys;
+          var rows = '';
+
+          for (var i = 0; i < keys.length; i++) {
+            rows += '<tr><th class="profile__key">' + keys[i] + '</th><td class="profile__value"></td></tr>';
+          }
+
+          editor.insertHtml('<table class="profile profile--designer"><tbody>' + rows + '</tbody></table>');
           editor.editable().find('.profile__value').getItem(0).setStyle('width', '200px')
         }
       });
       editor.addCommand('infiniteprofilecelebrity', {
         exec: function (editor) {
-          editor.insertHtml('<table class="profile profile--celebrity">' +
-            '<tbody>' +
-            '<tr><th class="profile__key">Name</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Geburtstag</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Geburtsort</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Sternzeichen</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Größe</th><td class="profile__value"></td>' +
-            '<tr><th class="profile__key">Beruf</th><td class="profile__value"></td>' +
-            '</tr>' +
-            '</tbody></table>');
+          var keys = drupalSettings.paragraphs_starterkit_profile.celebrityKeys;
+          var rows = '';
+
+          for (var i = 0; i < keys.length; i++) {
+            rows += '<tr><th class="profile__key">' + keys[i] + '</th><td class="profile__value"></td></tr>';
+          }
+
+          editor.insertHtml('<table class="profile profile--celebrity"><tbody>' + rows + '</tbody></table>');
           editor.editable().find('.profile__value').getItem(0).setStyle('width', '200px')
         }
       });
@@ -80,4 +72,4 @@
     }
   });
 
-})(jQuery, Drupal, CKEDITOR);
+})(jQuery, Drupal, drupalSettings, CKEDITOR);

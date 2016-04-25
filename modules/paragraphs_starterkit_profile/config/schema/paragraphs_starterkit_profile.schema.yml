@@ -1,0 +1,18 @@
+paragraphs_starterkit_profile.keys:
+  type: config_object
+  mapping:
+    model:
+      label: Keys for model profiles
+      type: sequence
+      sequence:
+        type: string
+    designer:
+      label: Keys for designer profile
+      type: sequence
+      sequence:
+        type: string
+    celebrity:
+      label: Keys for celebrity profile
+      type: sequence
+      sequence:
+        type: string

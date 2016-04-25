@@ -3,3 +3,5 @@ drupal.ckeditor.plugins.infiniteprofile:
   css:
     component:
       css/plugins/infiniteprofile/plugin.css: {}
+  dependencies:
+    - core/drupalSettings
