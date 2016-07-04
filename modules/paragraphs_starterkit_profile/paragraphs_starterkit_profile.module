@@ -6,12 +6,19 @@
  */
 
 /**
- * Implements hook_form_BASE_FORM_ID_alter().
+ * Implements hook_form_node_form_alter().
+ */
+function paragraphs_starterkit_profile_form_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['#attached']['drupalSettings']['paragraphs_starterkit_profile']['modelKeys'] = Drupal::config('paragraphs_starterkit_profile.keys')->get('model');
+  $form['#attached']['drupalSettings']['paragraphs_starterkit_profile']['designerKeys'] = Drupal::config('paragraphs_starterkit_profile.keys')->get('designer');
+  $form['#attached']['drupalSettings']['paragraphs_starterkit_profile']['celebrityKeys'] = Drupal::config('paragraphs_starterkit_profile.keys')->get('celebrity');
+}
+
+/**
+ * Implements hook_form_taxonomy_term_form_alter().
  */
 function paragraphs_starterkit_profile_form_taxonomy_term_form_alter(&$form, &$form_state, $form_id) {
-  if (in_array($form_id, ['taxonomy_term_model_form', 'taxonomy_term_brand_form'])) {
-    $form['#attached']['drupalSettings']['paragraphs_starterkit_profile']['modelKeys'] = Drupal::config('paragraphs_starterkit_profile.keys')->get('model');
-    $form['#attached']['drupalSettings']['paragraphs_starterkit_profile']['designerKeys'] = Drupal::config('paragraphs_starterkit_profile.keys')->get('designer');
-    $form['#attached']['drupalSettings']['paragraphs_starterkit_profile']['celebrityKeys'] = Drupal::config('paragraphs_starterkit_profile.keys')->get('celebrity');
-  }
+  $form['#attached']['drupalSettings']['paragraphs_starterkit_profile']['modelKeys'] = Drupal::config('paragraphs_starterkit_profile.keys')->get('model');
+  $form['#attached']['drupalSettings']['paragraphs_starterkit_profile']['designerKeys'] = Drupal::config('paragraphs_starterkit_profile.keys')->get('designer');
+  $form['#attached']['drupalSettings']['paragraphs_starterkit_profile']['celebrityKeys'] = Drupal::config('paragraphs_starterkit_profile.keys')->get('celebrity');
 }
