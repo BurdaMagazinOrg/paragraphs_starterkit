@@ -1,0 +1,41 @@
+<?php
+
+use Drupal\block\Entity\Block;
+
+/**
+ * Implements hook_preprocess_paragraphs().
+ *
+ * Prepare display of adsense block in adsense paragraphs.
+ */
+function paragraphs_starterkit_adsense_preprocess_paragraph(&$variables) {
+  if ($variables['paragraph']->getType() === 'adsense') {
+
+    // TODO: Add handling for getting configured or automatically next adsense block placement.
+    $adsense_block_id = 'adsense_managedad_1';
+    $adsense_block = _paragraphs_starterkit_adsense_get_adsense_block($adsense_block_id);
+    $adsense_block = \Drupal::service('renderer')->render($adsense_block);
+
+    $variables['content']['adsense'] = array(
+      '#markup' => $adsense_block
+    );
+  }
+}
+
+/**
+ * Returns rendered adsense block with the given id.
+ *
+ * @param string $id
+ *
+ * @return array
+ *   The block render array
+ */
+function _paragraphs_starterkit_adsense_get_adsense_block($id) {
+  /* @var Drupal\block\Entity\Block $block */
+  $block = Block::load($id);
+
+  if (is_object($block)) {
+    return \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block, 'default');
+  }
+}
