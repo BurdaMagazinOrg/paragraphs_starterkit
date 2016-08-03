@@ -1,6 +1,7 @@
 status: true
 dependencies:
   config:
+    - field.field.paragraph.recent_content.field_anchor
     - field.field.paragraph.recent_content.field_item_count
     - field.field.paragraph.recent_content.field_p_view_mode
     - field.field.paragraph.recent_content.field_title
@@ -10,6 +11,13 @@ targetEntityType: paragraph
 bundle: recent_content
 mode: default
 content:
+  field_anchor:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   field_item_count:
     weight: 2
     settings:
@@ -30,4 +38,5 @@ content:
     type: string_textfield
 hidden:
   created: true
+  status: true
   uid: true

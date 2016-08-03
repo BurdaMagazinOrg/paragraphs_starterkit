@@ -2,6 +2,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.paragraph.small
+    - field.field.paragraph.profile.field_anchor
     - field.field.paragraph.profile.field_key_facts
     - field.field.paragraph.profile.field_media
     - field.field.paragraph.profile.field_p_view_mode
@@ -37,5 +38,6 @@ content:
     type: string
 hidden:
   created: true
+  field_anchor: true
   field_p_view_mode: true
   uid: true

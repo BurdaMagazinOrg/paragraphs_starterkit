@@ -1,8 +1,10 @@
-langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.twitter.field_anchor
     - field.field.paragraph.twitter.field_link
+    - field.field.paragraph.twitter.field_p_view_mode
+    - field.field.paragraph.twitter.field_title
     - paragraphs.paragraphs_type.twitter
   module:
     - link
@@ -12,8 +14,9 @@ bundle: twitter
 mode: default
 content:
   field_link:
-    weight: 0
-    label: above
+    type: link
+    weight: 1
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -21,7 +24,15 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+  field_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
 hidden:
   created: true
+  field_anchor: true
+  field_p_view_mode: true
   uid: true

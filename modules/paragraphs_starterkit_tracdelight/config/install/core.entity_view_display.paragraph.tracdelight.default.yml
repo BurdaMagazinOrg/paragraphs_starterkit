@@ -1,6 +1,7 @@
 status: true
 dependencies:
   config:
+    - field.field.paragraph.tracdelight.field_anchor
     - field.field.paragraph.tracdelight.field_p_view_mode
     - field.field.paragraph.tracdelight.field_product
     - field.field.paragraph.tracdelight.field_title
@@ -27,5 +28,6 @@ content:
     type: string
 hidden:
   created: true
+  field_anchor: true
   field_p_view_mode: true
   uid: true

@@ -1,7 +1,9 @@
 status: true
 dependencies:
   config:
+    - field.field.paragraph.content_teaser.field_anchor
     - field.field.paragraph.content_teaser.field_nodes
+    - field.field.paragraph.content_teaser.field_p_view_mode
     - field.field.paragraph.content_teaser.field_title
     - paragraphs.paragraphs_type.content_teaser
 id: paragraph.content_teaser.default
@@ -9,16 +11,28 @@ targetEntityType: paragraph
 bundle: content_teaser
 mode: default
 content:
+  field_anchor:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   field_nodes:
-    weight: 1
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-  field_title:
+  field_p_view_mode:
     weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+  field_title:
+    weight: 1
     settings:
       size: 60
       placeholder: ''
@@ -26,4 +40,5 @@ content:
     type: string_textfield
 hidden:
   created: true
+  status: true
   uid: true

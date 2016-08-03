@@ -1,6 +1,7 @@
 status: true
 dependencies:
   config:
+    - field.field.paragraph.recent_content.field_anchor
     - field.field.paragraph.recent_content.field_item_count
     - field.field.paragraph.recent_content.field_p_view_mode
     - field.field.paragraph.recent_content.field_title
@@ -33,4 +34,5 @@ content:
     type: string
 hidden:
   created: true
+  field_anchor: true
   uid: true

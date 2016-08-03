@@ -1,0 +1,21 @@
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_p_view_mode
+    - paragraphs.paragraphs_type.content_teaser
+  module:
+    - options
+id: paragraph.content_teaser.field_p_view_mode
+field_name: field_p_view_mode
+entity_type: paragraph
+bundle: content_teaser
+label: Layout
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    value: small
+default_value_callback: ''
+settings: {  }
+field_type: list_string

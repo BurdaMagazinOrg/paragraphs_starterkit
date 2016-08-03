@@ -1,7 +1,9 @@
 status: true
 dependencies:
   config:
+    - field.field.paragraph.content_teaser.field_anchor
     - field.field.paragraph.content_teaser.field_nodes
+    - field.field.paragraph.content_teaser.field_p_view_mode
     - field.field.paragraph.content_teaser.field_title
     - paragraphs.paragraphs_type.content_teaser
 id: paragraph.content_teaser.default
@@ -13,7 +15,7 @@ content:
     weight: 1
     label: hidden
     settings:
-      view_mode: teaser_square_s
+      view_mode: teaser_widescreen_s
       link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
@@ -26,4 +28,6 @@ content:
     type: string
 hidden:
   created: true
+  field_anchor: true
+  field_p_view_mode: true
   uid: true

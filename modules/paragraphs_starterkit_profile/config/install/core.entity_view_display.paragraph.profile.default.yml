@@ -1,6 +1,7 @@
 status: true
 dependencies:
   config:
+    - field.field.paragraph.profile.field_anchor
     - field.field.paragraph.profile.field_key_facts
     - field.field.paragraph.profile.field_media
     - field.field.paragraph.profile.field_p_view_mode
@@ -15,7 +16,7 @@ mode: default
 content:
   field_key_facts:
     type: text_default
-    weight: 4
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -28,7 +29,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
   field_title:
-    weight: 3
+    weight: 1
     label: hidden
     settings:
       link_to_entity: false
@@ -36,5 +37,6 @@ content:
     type: string
 hidden:
   created: true
+  field_anchor: true
   field_p_view_mode: true
   uid: true
