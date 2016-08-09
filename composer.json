@@ -1,0 +1,13 @@
+{
+    "name": "burdamagazinorg/paragraphs-starterkit",
+    "description": "Provide paragraphs types in sub-modules as starting point for using paragraphs",
+    "type": "drupal-module",
+    "authors": [
+        {
+            "name": "ITCru",
+            "email": "steffen.schlaer@it-cru.de"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
