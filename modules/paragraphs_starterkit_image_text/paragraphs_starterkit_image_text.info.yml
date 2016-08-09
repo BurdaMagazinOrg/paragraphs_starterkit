@@ -1,4 +1,4 @@
-name: Paragraphs Type: Image + Text
+name: "Paragraphs Type: Image + Text"
 description: Provide a simple 'Images + Text' paragrahps type.
 package: Paragraphs Types
 type: module
