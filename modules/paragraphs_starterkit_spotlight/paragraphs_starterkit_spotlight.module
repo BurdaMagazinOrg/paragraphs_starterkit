@@ -65,7 +65,17 @@ function paragraphs_starterkit_spotlight_preprocess_paragraph(&$variables) {
       '#links' => [],
     ];
 
-    foreach ($paragraph->getParentEntity()->field_paragraphs as $sibling) {
+    if (isset($paragraph->getParentEntity()->field_paragraphs)) {
+      $paragraphs = $paragraph->getParentEntity()->field_paragraphs;
+    }
+    elseif (isset($paragraph->getParentEntity()->field_paragraph)) {
+      $paragraphs = $paragraph->getParentEntity()->field_paragraph;
+    }
+    else {
+      $paragraphs = [];
+    }
+
+    foreach ($paragraphs as $sibling) {
       if ($sibling->entity->id() == $paragraph->id()) {
         continue;
       }
