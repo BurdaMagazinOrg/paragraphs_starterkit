@@ -1,5 +1,5 @@
 {
-    "name": "burdamagazinorg/paragraphs-starterkit",
+    "name": "burdamagazinorg/paragraphs_starterkit",
     "description": "Provide paragraphs types in sub-modules as starting point for using paragraphs",
     "type": "drupal-module",
     "authors": [
