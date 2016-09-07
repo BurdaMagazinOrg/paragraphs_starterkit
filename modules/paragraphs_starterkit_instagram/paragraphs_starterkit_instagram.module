@@ -27,7 +27,7 @@ function paragraphs_starterkit_instagram_preprocess_paragraph(&$variables) {
         $instagram = array(
           '#markup' => (string) $instagram_json->html,
         );
-        $variables['content']['instagram'] = render($instagram);
+        $variables['content']['instagram'] = $instagram;
         $variables['#attached']['library'][] = 'paragraphs_starterkit_instagram/instagram.embeds';
       }
     } catch(Exception $e) {}
