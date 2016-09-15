@@ -27,7 +27,7 @@ function paragraphs_starterkit_twitter_preprocess_paragraph(&$variables) {
         $tweet = array(
           '#markup' => (string) $tweet_json->html,
         );
-        $variables['content']['tweet'] = render($tweet);
+        $variables['content']['tweet'] = $tweet;
         $variables['#attached']['library'][] = 'paragraphs_starterkit_twitter/twitter.widgets';
       }
     } catch(Exception $e) {}
