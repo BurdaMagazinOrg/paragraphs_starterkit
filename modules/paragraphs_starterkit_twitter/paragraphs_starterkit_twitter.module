@@ -5,16 +5,17 @@
  * Contains paragraphs_starterkit_image_text.module
  */
 
+use Drupal\paragraphs\Entity\Paragraph;
+
 /**
  * Implements hook_preprocess_paragraphs().
  *
  * Attach css we need for paragraph types on nodes with image + text paragraphs.
  */
 function paragraphs_starterkit_twitter_preprocess_paragraph(&$variables) {
-  if ($variables['paragraph']->getType() === 'twitter') {
-    /* @var Drupal\paragraphs\Entity\Paragraph $paragraph */
-    $paragraph = $variables['paragraph'];
-
+  /* @var Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  if ($paragraph->getType() === 'twitter' && !$paragraph->hasField('field_media')) {
     try {
       $tweet_url = $paragraph->field_link->getValue();
       $tweet_url = $tweet_url[0]['uri'];
