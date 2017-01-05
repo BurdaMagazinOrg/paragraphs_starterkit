@@ -1,4 +1,4 @@
-name: Paragraphs Type: Quote
+name: 'Paragraphs Type: Quote'
 description: Provide a simple 'Quote' paragrahps type.
 package: Paragraphs Types
 type: module

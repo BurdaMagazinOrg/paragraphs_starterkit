@@ -1,4 +1,4 @@
-name: Paragraphs Type: User
+name: 'Paragraphs Type: User'
 description: Provide a simple 'User' paragrahps type.
 package: Paragraphs Types
 type: module
