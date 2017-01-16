@@ -5,16 +5,18 @@
  * Contains paragraphs_starterkit_image_text.module
  */
 
+use Drupal\paragraphs\Entity\Paragraph;
+
 /**
  * Implements hook_preprocess_paragraphs().
  *
  * Attach css we need for paragraph types on nodes with image + text paragraphs.
  */
 function paragraphs_starterkit_instagram_preprocess_paragraph(&$variables) {
-  if ($variables['paragraph']->getType() === 'instagram') {
-    /* @var Drupal\paragraphs\Entity\Paragraph $paragraph */
-    $paragraph = $variables['paragraph'];
+  /* @var Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
 
+  if ($paragraph->getType() === 'instagram' && !$paragraph->hasField('field_media')) {
     try {
       $instagram_url = $paragraph->field_link->getValue();
       $instagram_url = $instagram_url[0]['uri'];
