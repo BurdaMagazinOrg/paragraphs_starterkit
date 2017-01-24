@@ -15,6 +15,7 @@ use Drupal\paragraphs\Entity\Paragraph;
 function paragraphs_starterkit_twitter_preprocess_paragraph(&$variables) {
   /* @var Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+
   if ($paragraph->getType() === 'twitter' && !$paragraph->hasField('field_media')) {
     try {
       $tweet_url = $paragraph->field_link->getValue();
