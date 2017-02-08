@@ -9,18 +9,28 @@ use Drupal\views\Views;
 
 /**
  * Implements hook_preprocess_paragraphs().
- *
- * Attach css we need for paragraph types on nodes with image + text paragraphs.
  */
 function paragraphs_starterkit_recent_content_preprocess_paragraph(&$variables) {
   if ($variables['paragraph']->getType() === 'recent_content') {
-
-    $items = 3;
     $paragraph = $variables['paragraph'];
-    if ($paragraph->hasField('field_item_count') && !$paragraph->field_item_count->isEmpty()) {
+
+    if (isset($paragraph->field_item_count->value)) {
       $items = $paragraph->field_item_count->value;
     }
-    $embed_view = paragraphs_starterkit_recent_content_views_embed_view('paragraph_recent_content', 'default', $items);
+    else {
+      $items = 3;
+    }
+
+    if (isset($paragraph->getParentEntity()->field_tags->target_id)) {
+      $term_id = $paragraph->getParentEntity()->field_tags->target_id;
+    }
+    else {
+      $term_id = NULL;
+    }
+
+    $content_id = $paragraph->getParentEntity()->id();
+
+    $embed_view = paragraphs_starterkit_recent_content_views_embed_view('paragraph_recent_content', 'default', $items, $term_id, $content_id);
     $recent_content_view = \Drupal::service('renderer')->render($embed_view);
     $variables['content']['recent_content_view'] = array(
       '#markup' => $recent_content_view
