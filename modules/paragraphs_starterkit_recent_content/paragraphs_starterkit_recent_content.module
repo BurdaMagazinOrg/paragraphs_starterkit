@@ -21,20 +21,24 @@ function paragraphs_starterkit_recent_content_preprocess_paragraph(&$variables) 
       $items = 3;
     }
 
-    if (isset($paragraph->getParentEntity()->field_tags->target_id)) {
-      $term_id = $paragraph->getParentEntity()->field_tags->target_id;
-    }
-    else {
-      $term_id = NULL;
-    }
+    $parent_entity = $paragraph->getParentEntity();
 
-    $content_id = $paragraph->getParentEntity()->id();
+    if(isset($parent_entity)) {
+      if (isset($parent_entity->field_tags->target_id)) {
+        $term_id = $parent_entity->field_tags->target_id;
+      }
+      else {
+        $term_id = NULL;
+      }
 
-    $embed_view = paragraphs_starterkit_recent_content_views_embed_view('paragraph_recent_content', 'default', $items, $term_id, $content_id);
-    $recent_content_view = \Drupal::service('renderer')->render($embed_view);
-    $variables['content']['recent_content_view'] = array(
-      '#markup' => $recent_content_view
-    );
+      $content_id = $parent_entity->id();
+
+      $embed_view = paragraphs_starterkit_recent_content_views_embed_view('paragraph_recent_content', 'default', $items, $term_id, $content_id);
+      $recent_content_view = \Drupal::service('renderer')->render($embed_view);
+      $variables['content']['recent_content_view'] = array(
+        '#markup' => $recent_content_view
+      );
+    }
   }
 }
 
