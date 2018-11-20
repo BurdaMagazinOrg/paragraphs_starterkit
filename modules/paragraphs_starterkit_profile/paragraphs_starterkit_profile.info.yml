@@ -8,5 +8,4 @@ hidden: false
 dependencies:
   - paragraphs
   - field
-  - field_ui
   - entity_reference
