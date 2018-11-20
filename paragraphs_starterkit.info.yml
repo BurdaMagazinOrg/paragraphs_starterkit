@@ -9,7 +9,6 @@ dependencies:
   - paragraphs
   - field
   - image
-  - field_ui
   - entity_reference
   - block
   - node
