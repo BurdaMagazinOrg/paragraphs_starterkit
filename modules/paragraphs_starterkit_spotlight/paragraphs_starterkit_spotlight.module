@@ -5,18 +5,17 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
-use Drupal\taxonomy\TermInterface;
 
 /**
  * Implements hook_node_presave().
  */
 function paragraphs_starterkit_spotlight_node_presave(NodeInterface $node) {
 
-	// Clear cache for prev/next navigation on lexicon nodes.
-	if ($node->bundle() == 'lexicon') {
-		$tags = ['node:bundle:' . $node->getType()];
-		Cache::invalidateTags($tags);
-	}
+  // Clear cache for prev/next navigation on lexicon nodes.
+  if ($node->bundle() == 'lexicon') {
+    $tags = ['node:bundle:' . $node->getType()];
+    Cache::invalidateTags($tags);
+  }
 }
 
 /**
@@ -24,11 +23,11 @@ function paragraphs_starterkit_spotlight_node_presave(NodeInterface $node) {
  */
 function paragraphs_starterkit_spotlight_node_delete(NodeInterface $node) {
 
-	// Clear cache for prev/next navigation on lexicon nodes.
-	if ($node->bundle() == 'lexicon') {
-		$tags = ['node:bundle:' . $node->getType()];
-		Cache::invalidateTags($tags);
-	}
+  // Clear cache for prev/next navigation on lexicon nodes.
+  if ($node->bundle() == 'lexicon') {
+    $tags = ['node:bundle:' . $node->getType()];
+    Cache::invalidateTags($tags);
+  }
 }
 
 /**
@@ -36,7 +35,7 @@ function paragraphs_starterkit_spotlight_node_delete(NodeInterface $node) {
  */
 function paragraphs_starterkit_spotlight_preprocess_node(&$variables) {
 
-	/* @var $node NodeInterface */
+  /* @var $node NodeInterface */
   $node = $variables['elements']['#node'];
   if ($node->hasField('field_paragraphs')) {
     if (!$node->field_paragraphs->isEmpty() && $bundle = $node->field_paragraphs[0]->entity->bundle()) {
@@ -52,7 +51,7 @@ function paragraphs_starterkit_spotlight_preprocess_node(&$variables) {
  */
 function paragraphs_starterkit_spotlight_preprocess_taxonomy_term(&$variables) {
 
-	/* @var $term TermInterface */
+  /* @var $term TermInterface */
   $term = $variables['elements']['#taxonomy_term'];
   if ($term->hasField('field_paragraphs')) {
     if (!$term->field_paragraphs->isEmpty() && $bundle = $term->field_paragraphs[0]->entity->bundle()) {
@@ -68,7 +67,7 @@ function paragraphs_starterkit_spotlight_preprocess_taxonomy_term(&$variables) {
  */
 function paragraphs_starterkit_spotlight_preprocess_paragraph(&$variables) {
 
-	/* @var $paragraph \Drupal\paragraphs\ParagraphInterface */
+  /* @var $paragraph \Drupal\paragraphs\ParagraphInterface */
   $paragraph = $variables['elements']['#paragraph'];
   if ($paragraph->bundle() == 'spotlight') {
     $variables['has_headline'] = (bool) $paragraph->field_has_headline->value;
@@ -78,21 +77,19 @@ function paragraphs_starterkit_spotlight_preprocess_paragraph(&$variables) {
     if ($variables['has_socials']) {
       if ($node = \Drupal::routeMatch()->getParameter('node')) {
         _infinite_paragraphs_get_parent_base_data($node, $variables);
-      }
-      else if ($term = \Drupal::routeMatch()->getParameter('taxonomy_term')) {
+      } else if ($term = \Drupal::routeMatch()->getParameter('taxonomy_term')) {
         _infinite_paragraphs_get_parent_base_data($term, $variables);
       }
     }
 
     if ($paragraph->getParentEntity()->bundle() == 'lexicon') {
-			$variables['lexicon_links'] = paragraphs_starterkit_spotlight_get_lexicon_links($paragraph);
+      $variables['lexicon_links'] = paragraphs_starterkit_spotlight_get_lexicon_links($paragraph);
 
-			// Clear caches when new lexicon nodes are created.
-			$variables['#cache']['tags']['node:bundle:lexicon'];
-		}
-		else {
-			$variables['anchor_links'] = paragraphs_starterkit_spotlight_get_anchor_links($paragraph);
-		}
+      // Clear caches when new lexicon nodes are created.
+      $variables['#cache']['tags']['node:bundle:lexicon'];
+    } else {
+      $variables['anchor_links'] = paragraphs_starterkit_spotlight_get_anchor_links($paragraph);
+    }
   }
 }
 
@@ -104,28 +101,49 @@ function paragraphs_starterkit_spotlight_preprocess_paragraph(&$variables) {
  * @return array
  */
 function paragraphs_starterkit_spotlight_get_anchor_links(ParagraphInterface $paragraph) {
-	$anchor_links = [
-		'#theme' => 'links',
-		'#links' => [],
-	];
+  $anchor_links = [
+    '#theme' => 'links',
+    '#links' => [],
+  ];
 
-	$paragraphs = [];
-	if (isset($paragraph->getParentEntity()->field_paragraphs)) {
-		$paragraphs = $paragraph->getParentEntity()->field_paragraphs;
-	}
+  $paragraphs = [];
+  if (isset($paragraph->getParentEntity()->field_paragraphs)) {
+    $paragraphs = $paragraph->getParentEntity()->field_paragraphs;
+  }
 
-	foreach ($paragraphs as $sibling) {
-		if ($sibling->entity->id() == $paragraph->id()) {
-			continue;
-		}
-		if ($sibling->entity->field_anchor && !$sibling->entity->field_anchor->isEmpty()) {
-			$anchor_links['#links'][] = [
-				'title' => $sibling->entity->field_anchor->value,
-				'url' => Url::fromUserInput('#' . Html::getId($sibling->entity->field_anchor->value)),
-			];
-		}
-	}
-	return $anchor_links;
+  foreach ($paragraphs as $sibling) {
+    if ($sibling->entity->id() == $paragraph->id()) {
+      continue;
+    }
+    if ($sibling->entity->field_anchor && !$sibling->entity->field_anchor->isEmpty()) {
+      $anchor_links['#links'][] = [
+        'title' => $sibling->entity->field_anchor->value,
+        'url' => Url::fromUserInput('#' . Html::getId($sibling->entity->field_anchor->value)),
+      ];
+    }
+  }
+  $num_links = count($anchor_links['#links']);
+  $num_rows = round($num_links / 2);
+  $current_row = $num_rows;
+  $count = 1;
+
+  $result = [];
+
+  foreach($anchor_links['#links'] as $key => $value) {
+    if($key === 0) {
+      $result[$key] = $value;
+    }elseif ($key < $num_rows) {
+      $result[$key * 2] = $value;
+    }else {
+      $result[$count] = $value;
+      $count = $count + 2;
+    }
+  }
+  ksort($result);
+
+  $anchor_links['#links'] = $result;
+
+  return $anchor_links;
 }
 
 /**
@@ -136,55 +154,55 @@ function paragraphs_starterkit_spotlight_get_anchor_links(ParagraphInterface $pa
  * @return array
  */
 function paragraphs_starterkit_spotlight_get_lexicon_links(ParagraphInterface $paragraph) {
-	$lexicon_links = [
-		'#theme' => 'links',
-		'#links' => [],
-	];
+  $lexicon_links = [
+    '#theme' => 'links',
+    '#links' => [],
+  ];
 
-	// Get referenced lexicon type from lexicon node.
-	$lexiconType = array_shift($paragraph->getParentEntity()->field_lexicon_type->referencedEntities());
+  // Get referenced lexicon type from lexicon node.
+  $lexiconType = array_shift($paragraph->getParentEntity()->field_lexicon_type->referencedEntities());
 
-	// Get NID of previous lexicon node.
-	$prevNode = \Drupal::entityQuery('node')
-		->condition('type', 'lexicon')
-		->condition('status', TRUE)
-		->condition('title', $paragraph->getParentEntity()->label(), '<')
-		->condition('field_lexicon_type.entity.tid', $lexiconType->id())
-		->sort('title', 'DESC')
-		->range(0, 1)
-		->execute();
+  // Get NID of previous lexicon node.
+  $prevNode = \Drupal::entityQuery('node')
+    ->condition('type', 'lexicon')
+    ->condition('status', TRUE)
+    ->condition('title', $paragraph->getParentEntity()->label(), '<')
+    ->condition('field_lexicon_type.entity.tid', $lexiconType->id())
+    ->sort('title', 'DESC')
+    ->range(0, 1)
+    ->execute();
 
-	if (!empty($prevNode)) {
-		$lexicon_links['#links'][] = [
-			'title' => t('Previous'),
-			'url' => Url::fromRoute('entity.node.canonical', array('node' => array_shift($prevNode))),
-			'rel' => 'prev',
-		];
-	}
+  if (!empty($prevNode)) {
+    $lexicon_links['#links'][] = [
+      'title' => t('Previous'),
+      'url' => Url::fromRoute('entity.node.canonical', array('node' => array_shift($prevNode))),
+      'rel' => 'prev',
+    ];
+  }
 
-	// Get link to lexicon.
-	$lexicon_links['#links'][] = [
-		'title' => $lexiconType->label(),
-		'url' => Url::fromRoute('entity.taxonomy_term.canonical', array('taxonomy_term' => $lexiconType->id())),
-	];
+  // Get link to lexicon.
+  $lexicon_links['#links'][] = [
+    'title' => $lexiconType->label(),
+    'url' => Url::fromRoute('entity.taxonomy_term.canonical', array('taxonomy_term' => $lexiconType->id())),
+  ];
 
-	// Get NID of next lexicon node.
-	$nextNode = \Drupal::entityQuery('node')
-		->condition('type', 'lexicon')
-		->condition('status', TRUE)
-		->condition('title', $paragraph->getParentEntity()->label(), '>')
-		->condition('field_lexicon_type.entity.tid', $lexiconType->id())
-		->sort('title', 'ASC')
-		->range(0, 1)
-		->execute();
+  // Get NID of next lexicon node.
+  $nextNode = \Drupal::entityQuery('node')
+    ->condition('type', 'lexicon')
+    ->condition('status', TRUE)
+    ->condition('title', $paragraph->getParentEntity()->label(), '>')
+    ->condition('field_lexicon_type.entity.tid', $lexiconType->id())
+    ->sort('title', 'ASC')
+    ->range(0, 1)
+    ->execute();
 
-	if (!empty($nextNode)) {
-		$lexicon_links['#links'][] = [
-			'title' => t('Next'),
-			'url' => Url::fromRoute('entity.node.canonical', array('node' => array_shift($nextNode))),
-			'rel' => 'next',
-		];
-	}
+  if (!empty($nextNode)) {
+    $lexicon_links['#links'][] = [
+      'title' => t('Next'),
+      'url' => Url::fromRoute('entity.node.canonical', array('node' => array_shift($nextNode))),
+      'rel' => 'next',
+    ];
+  }
 
-	return $lexicon_links;
+  return $lexicon_links;
 }
