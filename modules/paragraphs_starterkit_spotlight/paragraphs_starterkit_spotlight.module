@@ -100,14 +100,11 @@ function prepare_dom_flex_row(array $render_array) {
   $num_rows = round($num_links / 2);
 
   foreach ($render_array as $key => $value) {
-    switch (true) {
-    case $key === 0:
+    if ($key === 0) {
       $result[$key] = $value;
-      break;
-    case $key < $num_rows:
+    } elseif ($key < $num_rows) {
       $result[$key * 2] = $value;
-      break;
-    default:
+    } else {
       $result[$count] = $value;
       $count += 2;
     }
