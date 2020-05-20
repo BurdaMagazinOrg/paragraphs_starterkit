@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Contains \Drupal\paragraphs_demo\Tests\ParagraphsDemoTest.php.
- */
 
 namespace Drupal\paragraphs_starterkit\Tests;
 
@@ -20,22 +16,15 @@ class ParagraphsStarterkitTest extends WebTestBase {
    *
    * @var string[]
    */
-  public static $modules = array(
+  public static $modules = [
     'paragraphs_starterkit',
-  );
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-  }
+  ];
 
   /**
    * Asserts demo paragraphs have been created.
    */
   protected function testConfigurationsAndCreation() {
-    $admin_user = $this->drupalCreateUser(array(
+    $admin_user = $this->drupalCreateUser([
       'administer site configuration',
       'administer content translation',
       'create content translations',
@@ -48,7 +37,7 @@ class ParagraphsStarterkitTest extends WebTestBase {
       'administer paragraph display',
       'administer paragraph form display',
       'administer node form display',
-    ));
+    ]);
 
     $this->drupalLogin($admin_user);
     // Check for all pre-configured paragraphs_starterkit.

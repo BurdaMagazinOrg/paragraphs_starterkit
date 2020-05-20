@@ -1,13 +1,9 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\paragraphs_starterkit_profile\Plugin\CKEditorPlugin\InfiniteProfile.
- */
-
 namespace Drupal\paragraphs_starterkit_profile\Plugin\CKEditorPlugin;
 
 use Drupal\ckeditor\CKEditorPluginBase;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\editor\Entity\Editor;
 
 /**
@@ -19,12 +15,17 @@ use Drupal\editor\Entity\Editor;
  *   module = "ckeditor"
  * )
  */
-class InfiniteProfile extends CKEditorPluginBase  {
+class InfiniteProfile extends CKEditorPluginBase {
 
+  use StringTranslationTrait;
+
+  /**
+   * {@inheritdoc}
+   */
   public function getLibraries(Editor $editor) {
-    return array(
+    return [
       'paragraphs_starterkit_profile/drupal.ckeditor.plugins.infiniteprofile',
-    );
+    ];
   }
 
   /**
@@ -34,31 +35,31 @@ class InfiniteProfile extends CKEditorPluginBase  {
     return drupal_get_path('module', 'paragraphs_starterkit_profile') . '/js/plugins/infiniteprofile/plugin.js';
   }
 
-   /**
+  /**
    * {@inheritdoc}
    */
   public function getConfig(Editor $editor) {
-    return array();
+    return [];
   }
 
   /**
    * {@inheritdoc}
    */
   public function getButtons() {
-    return array(
-      'InfiniteProfileModel' => array(
-        'label' => t('Model profile'),
+    return [
+      'InfiniteProfileModel' => [
+        'label' => $this->t('Model profile'),
         'image' => drupal_get_path('module', 'paragraphs_starterkit') . '/js/plugins/infiniteprofile/image.png',
-      ),
-      'InfiniteProfileDesigner' => array(
-        'label' => t('Desginer profile'),
+      ],
+      'InfiniteProfileDesigner' => [
+        'label' => $this->t('Desginer profile'),
         'image' => drupal_get_path('module', 'paragraphs_starterkit') . '/js/plugins/infiniteprofile/image.png',
-      ),
-      'InfiniteProfileCelebrity' => array(
-        'label' => t('Celebrity profile'),
+      ],
+      'InfiniteProfileCelebrity' => [
+        'label' => $this->t('Celebrity profile'),
         'image' => drupal_get_path('module', 'paragraphs_starterkit') . '/js/plugins/infiniteprofile/image.png',
-      ),
-    );
+      ],
+    ];
   }
 
 }

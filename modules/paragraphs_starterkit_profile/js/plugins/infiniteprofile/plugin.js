@@ -11,7 +11,7 @@
 
   CKEDITOR.plugins.add('infiniteprofile', {
     requires: 'table',
-    init : function(editor) {
+    init: function (editor) {
       editor.addCommand('infiniteprofilemodel', {
         exec: function (editor) {
           var keys = drupalSettings.paragraphs_starterkit_profile.modelKeys;
